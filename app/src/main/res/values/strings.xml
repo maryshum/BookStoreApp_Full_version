@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">BookStoreApp</string>
+    <string name="main_activity_name">Books Inventory</string>
+    <string name="product_activity_name">Product Details</string>
+    <string name= "increment_button">+</string>
+    <string name= "decrement_button">-</string>
+    <string name="name_edit_text_hint">Book name</string>
+    <string name="price_edit_text_hint">Price</string>
+    <string name = "supplier_edit_text_hint">Supplier</string>
+    <string name="quantity_text">Quantity</string>
+    <string name = "name_text">Name</string>
+    <string name = "price_text">Price</string>
+    <string name = "supplier_text">Supplier</string>
+    <string name = "supplier_phone_text">Supplier Phone Number</string>
+    <string name="quantity">0</string>
+    <string name="delete_book_button">Delete book</string>
+    <string name="order_book_button">Order book</string>
+    <string name="sale_button">Sale</string>
+    <string name="empty_view_text_view">No books found. \n Try adding books to the database. \n Required fields: Name, Price, Quantity, Supplier, Supplier phone number.</string>
+    <string name= "books_image_description">Four books on a wooden shelf. </string>
+    <string name="details_activity_add_book">Add book</string>
+    <string name="details_activity_edit_book">Edit book details</string>
+    <string name="insert_book_failed">Book wasn`t saved</string>
+    <string name="insert_book_successful">Book was successfully saved</string>
+    <string name="save_book_menu_option">Save book</string>
+    <string name="unsaved_changes">Cancel changes and quit editing?</string>
+    <string name="positive_message">Cancel</string>
+    <string name="negative_message">Continue editing</string>
+    <string name="delete_alert">Are you sure you want to delete book?</string>
+    <string name="delete">Delete</string>
+    <string name="dont_delete">Cancel</string>
+    <string name="delete_book_failed">No books to delete</string>
+    <string name="delete_book_successful">Book deleted</string>
+    <string name="invalid_input">Quantity can`t be a negative value</string>
 </resources>

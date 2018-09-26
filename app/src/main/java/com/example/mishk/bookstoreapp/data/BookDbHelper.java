@@ -8,7 +8,7 @@ import com.example.mishk.bookstoreapp.data.BookContract.BookEntry;
 public class BookDbHelper extends SQLiteOpenHelper{
 private static final String DATABASE_NAME = "books.db";
 private static final int DATABASE_VERSION = 1;
-
+    //Reference used for this code: Pets apps from lessons 4 and 5 of Udacity Android Basics Nanodegree Course
 //SQLiteOpenHelper constructor
     public BookDbHelper (Context context){
         super (context, DATABASE_NAME, null, DATABASE_VERSION);

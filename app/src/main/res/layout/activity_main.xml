@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/test_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/text_side_margin"
-        android:layout_marginStart="@dimen/text_side_margin"
-        android:layout_marginRight="@dimen/text_side_margin"
-        android:layout_marginEnd="@dimen/text_side_margin"
-        android:layout_gravity="center"/>
-
-</LinearLayout>
+   <ListView
+       android:id="@+id/list"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"/>
+   <RelativeLayout
+       android:id="@+id/empty_view"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerInParent="true">
+      <ImageView
+          android:id="@+id/books_image"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:contentDescription="@string/books_image_description"
+          android:src="@drawable/book_shelf"/>
+   <TextView
+       android:id="@+id/empty_view_text"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/books_image"
+       android:textAlignment="center"
+       android:text="@string/empty_view_text_view"/>
+   </RelativeLayout>
+   <android.support.design.widget.FloatingActionButton
+       android:id="@+id/add_book_button"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentRight="true"
+       android:layout_alignParentEnd="true"
+       android:layout_alignParentBottom="true"
+       android:layout_margin="@dimen/add_book_button_margin_bottom"
+       android:src="@drawable/ic_control_point"/>
+</RelativeLayout>

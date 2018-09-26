@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name = "text_side_margin">30dp</dimen>
+    <dimen name = "text_side_margin">10dp</dimen>
+    <dimen name= "text_margin_bottom">10dp</dimen>
+    <dimen name = "text_margin_top">20dp</dimen>
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="quantity_margin_side">10dp</dimen>
+    <dimen name ="buttons_margin_side">10dp</dimen>
+    <dimen name="edit_text_margin_side">10dp</dimen>
+    <dimen name="edit_text_margin_top">7dp</dimen>
+    <dimen name="quantity_text_margin_top">30dp</dimen>
+    <dimen name="price_text_margin_top">10dp</dimen>
+    <dimen name="supplier_text_margin_top">15dp</dimen>
+    <dimen name="supplier_phone_text_margin_top">10dp</dimen>
+    <dimen name="button_width">40dp</dimen>
+    <dimen name="delete_book_button_margin_top">80dp</dimen>
+    <dimen name="order_book_button_margin_top">55dp</dimen>
+    <dimen name="delete_button_margin_left">30dp</dimen>
+    <dimen name="order_button_margin_left">30dp</dimen>
+    <dimen name="sale_button_margin_top">20dp</dimen>
+    <dimen name="add_book_button_margin_bottom">30dp</dimen>
+    <dimen name="add_book_button_margin_side">20dp</dimen>
 </resources>
