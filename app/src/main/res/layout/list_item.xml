@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/text_side_margin"
+        android:layout_marginStart="@dimen/text_side_margin"
+        android:layout_marginTop="@dimen/text_margin_top"
+        android:textAppearance="?android:textAppearanceListItem"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/text_side_margin"
+        android:layout_marginStart="@dimen/text_side_margin"
+        android:layout_marginTop="@dimen/text_margin_top"
+        android:textAppearance="?android:textAppearanceListItemSmall"
+        tools:text="Price" />
+
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/text_side_margin"
+        android:layout_marginStart="@dimen/text_side_margin"
+        android:layout_marginTop="@dimen/text_margin_top"
+        android:textAppearance="?android:textAppearanceListItemSmall"
+        tools:text="Quantity" />
+
+    <Button
+        android:id="@+id/sale_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/buttons_margin_side"
+        android:layout_marginStart="@dimen/buttons_margin_side"
+        android:layout_marginTop="@dimen/sale_button_margin_top"
+        android:text="@string/sale_button" />
+</LinearLayout>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".ProductDetailsActivity">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/text_margin_bottom"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginStart="@dimen/text_side_margin"
+            android:layout_marginTop="@dimen/text_margin_top"
+            android:text="@string/name_text"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/text_margin_bottom"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginStart="@dimen/text_side_margin"
+            android:layout_marginTop="@dimen/price_text_margin_top"
+            android:text="@string/price_text"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/text_margin_bottom"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginStart="@dimen/text_side_margin"
+            android:layout_marginTop="@dimen/supplier_text_margin_top"
+            android:text="@string/supplier_text"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/text_margin_bottom"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginStart="@dimen/text_side_margin"
+            android:layout_marginTop="@dimen/supplier_phone_text_margin_top"
+            android:text="@string/supplier_phone_text"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/quantity_margin_side"
+            android:layout_marginLeft="@dimen/quantity_margin_side"
+            android:layout_marginRight="@dimen/quantity_margin_side"
+            android:layout_marginStart="@dimen/quantity_margin_side"
+            android:layout_marginTop="@dimen/quantity_text_margin_top"
+            android:text="@string/quantity_text"
+            android:textSize="@dimen/text_size" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/edit_text_margin_side"
+            android:layout_marginLeft="@dimen/edit_text_margin_side"
+            android:layout_marginRight="@dimen/edit_text_margin_side"
+            android:layout_marginStart="@dimen/edit_text_margin_side"
+            android:layout_marginTop="@dimen/edit_text_margin_top"
+            android:hint="@string/name_edit_text_hint"
+            android:inputType="text"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/edit_text_margin_side"
+            android:layout_marginLeft="@dimen/edit_text_margin_side"
+            android:layout_marginRight="@dimen/edit_text_margin_side"
+            android:layout_marginStart="@dimen/edit_text_margin_side"
+            android:hint="@string/price_edit_text_hint"
+            android:inputType="text"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+        <EditText
+            android:id="@+id/supplier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/edit_text_margin_side"
+            android:layout_marginLeft="@dimen/edit_text_margin_side"
+            android:layout_marginRight="@dimen/edit_text_margin_side"
+            android:layout_marginStart="@dimen/edit_text_margin_side"
+            android:hint="@string/supplier_edit_text_hint"
+            android:inputType="text"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+        <EditText
+            android:id="@+id/supplier_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/edit_text_margin_side"
+            android:layout_marginLeft="@dimen/edit_text_margin_side"
+            android:layout_marginRight="@dimen/edit_text_margin_side"
+            android:layout_marginStart="@dimen/edit_text_margin_side"
+            android:hint="@string/supplier_edit_text_hint"
+            android:inputType="number"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/text_margin_bottom"
+            android:layout_marginLeft="@dimen/buttons_margin_side"
+            android:layout_marginStart="@dimen/buttons_margin_side"
+            android:layout_marginTop="@dimen/text_margin_top"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/decrement_button"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="wrap_content"
+                android:text="@string/decrement_button" />
+
+            <EditText
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/quantity_margin_side"
+                android:layout_marginLeft="@dimen/quantity_margin_side"
+                android:layout_marginRight="@dimen/quantity_margin_side"
+                android:layout_marginStart="@dimen/quantity_margin_side"
+                android:textSize="@dimen/text_size" />
+
+            <Button
+                android:id="@+id/increment_button"
+                android:layout_width="@dimen/button_width"
+                android:layout_height="wrap_content"
+                android:text="@string/increment_button" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

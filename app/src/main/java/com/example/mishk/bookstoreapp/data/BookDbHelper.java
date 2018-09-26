@@ -17,6 +17,7 @@ private static final int DATABASE_VERSION = 1;
     public void onCreate(SQLiteDatabase db) {
         //Create a String that contains SQL statement for creating a database
         String SQL_CREATE_TABLE = "CREATE TABLE " + BookEntry.TABLE_NAME + "("
+                + BookEntry.PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + BookEntry.PRODUCT_NAME + " TEXT NOT NULL,"
                 + BookEntry.PRODUCT_PRICE + " INTEGER NOT NULL DEFAULT 0,"
                 + BookEntry.PRODUCT_QUANTITY + " INTEGER NOT NULL DEFAULT 0,"
