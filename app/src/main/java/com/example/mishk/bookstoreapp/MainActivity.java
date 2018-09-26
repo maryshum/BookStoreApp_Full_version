@@ -57,19 +57,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
         mBookUri = BookEntry.CONTENT_URI;
     }
-    private void insertBook(){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(BookEntry.PRODUCT_NAME, "Martin Eden");
-        contentValues.put(BookEntry.PRODUCT_PRICE, 13);
-        contentValues.put(BookEntry.PRODUCT_QUANTITY, 30);
-        contentValues.put(BookEntry.SUPPLIER_NAME, "Quality Books");
-        contentValues.put(BookEntry.SUPPLIER_PHONE_NUMBER, 2024999167);
-        Uri newUri = getContentResolver().insert(BookEntry.CONTENT_URI, contentValues);
-    }
-    private void deleteAllBooks(){
-        int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
-        Log.v("MainActivity", rowsDeleted + " rows deleted from books database");
-    }
+
     @Override
     public Loader<Cursor> onCreateLoader (int id, Bundle bundle){
         String[] projection = {
