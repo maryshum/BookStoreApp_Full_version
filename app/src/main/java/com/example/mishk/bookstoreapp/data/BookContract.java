@@ -7,11 +7,11 @@ public final class BookContract {
     //Constructor for the class
     private BookContract() {}
     public final static String CONTENT_AUTHORITY = "com.example.mishk.bookstoreapp";
-    public final static String PATH_BOOKS = "Books";
+    public final static String PATH_BOOKS = "books";
     public final static Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     //Book database schema
     public static abstract class BookEntry implements BaseColumns {
-        public final static String TABLE_NAME = "Books";
+        public final static String TABLE_NAME = "books";
         public final static String PRODUCT_ID = BaseColumns._ID;
         public final static String PRODUCT_NAME = "Product_Name";
         public final static String PRODUCT_PRICE = "Price";

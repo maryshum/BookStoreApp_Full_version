@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.mishk.bookstoreapp.data.BookContract.BookEntry;
 
 public class BookDbHelper extends SQLiteOpenHelper{
-private static final String DATABASE_NAME = "books.db";
+    private static final String DATABASE_NAME = "store.db";
 private static final int DATABASE_VERSION = 1;
     //Reference used for this code: Pets apps from lessons 4 and 5 of Udacity Android Basics Nanodegree Course
 //SQLiteOpenHelper constructor
@@ -19,10 +19,10 @@ private static final int DATABASE_VERSION = 1;
         String SQL_CREATE_TABLE = "CREATE TABLE " + BookEntry.TABLE_NAME + "("
                 + BookEntry.PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + BookEntry.PRODUCT_NAME + " TEXT NOT NULL,"
-                + BookEntry.PRODUCT_PRICE + " INTEGER NOT NULL DEFAULT 0,"
+                + BookEntry.PRODUCT_PRICE + " REAL NOT NULL DEFAULT 0.00,"
                 + BookEntry.PRODUCT_QUANTITY + " INTEGER NOT NULL DEFAULT 0,"
                 + BookEntry.SUPPLIER_NAME + " TEXT NOT NULL,"
-                + BookEntry.SUPPLIER_PHONE_NUMBER + " INTEGER NOT NULL);";
+                + BookEntry.SUPPLIER_PHONE_NUMBER + " TEXT NOT NULL);";
         db.execSQL(SQL_CREATE_TABLE);
         }
 

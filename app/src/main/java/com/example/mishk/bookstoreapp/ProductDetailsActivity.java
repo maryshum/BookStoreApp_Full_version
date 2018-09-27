@@ -262,12 +262,12 @@ public class ProductDetailsActivity extends AppCompatActivity implements LoaderM
             int supplierPhoneColumnIndex = cursor.getColumnIndex(BookContract.BookEntry.SUPPLIER_PHONE_NUMBER);
 
             String bookName = cursor.getString(nameColumnIndex);
-            int bookPrice = cursor.getInt(priceColumnIndex);
+            double bookPrice = cursor.getDouble(priceColumnIndex);
             int booksQuantity = cursor.getInt(quantityColumnIndex);
             String supplierName = cursor.getString(supplierColumnIndex);
             String supplierPhone = cursor.getString(supplierPhoneColumnIndex);
             mNameEditText.setText(bookName);
-            mPriceEditText.setText(Integer.toString(bookPrice));
+            mPriceEditText.setText(Double.toString(bookPrice));
             mQuantityEditText.setText(Integer.toString(booksQuantity));
             mSupplierNameEditText.setText(supplierName);
             mSupplierPhoneEditText.setText(supplierPhone);

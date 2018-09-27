@@ -8,6 +8,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 
 //Reference used for this code: Pets apps from lessons 4 and 5 of Udacity Android Basics Nanodegree Course
@@ -17,14 +18,14 @@ public class BookProvider extends ContentProvider {
     //Uri matcher code for all books in the table
     private static final int BOOKS = 100;
     //Uri matcher code for one book from the table
-    private static final int BOOK = 101;
+    private static final int BOOK_ID = 101;
     //Uri matcher object to match a URI to the content
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     //Static initializer that is used when anything is called for the first time from the BookProvider class
     static {
         sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_BOOKS, BOOKS);
-        sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_BOOKS, BOOK);
+        sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_BOOKS + "/#", BOOK_ID);
     }
 
     private BookDbHelper mBookDbHelper;
@@ -49,7 +50,7 @@ public class BookProvider extends ContentProvider {
             case BOOKS:
                 cursor = database.query(BookContract.BookEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
-            case BOOK:
+            case BOOK_ID:
                 selection = BookContract.BookEntry.PRODUCT_ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 cursor = database.query(BookContract.BookEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
@@ -68,7 +69,7 @@ public class BookProvider extends ContentProvider {
         switch (match) {
             case BOOKS:
                 return BookContract.BookEntry.CONTENT_LIST_TYPE;
-            case BOOK:
+            case BOOK_ID:
                 return BookContract.BookEntry.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalStateException("Unknown URI " + uri + "with match " + match);
@@ -89,10 +90,10 @@ public class BookProvider extends ContentProvider {
 
     private Uri insertBook(Uri uri, ContentValues contentValues) {
         String bookName = contentValues.getAsString(BookContract.BookEntry.PRODUCT_NAME);
-        if (bookName == null) {
+        if (TextUtils.isEmpty(bookName)) {
             throw new IllegalArgumentException("Book name required");
         }
-        Integer bookPrice = contentValues.getAsInteger(BookContract.BookEntry.PRODUCT_PRICE);
+        Double bookPrice = contentValues.getAsDouble(BookContract.BookEntry.PRODUCT_PRICE);
         if (bookPrice != null && bookPrice < 0) {
             throw new IllegalArgumentException("Valid book price required");
         }
@@ -101,11 +102,11 @@ public class BookProvider extends ContentProvider {
             throw new IllegalArgumentException("Valid quantity of books required");
         }
         String supplierName = contentValues.getAsString(BookContract.BookEntry.SUPPLIER_NAME);
-        if (supplierName == null) {
+        if (TextUtils.isEmpty(supplierName)) {
             throw new IllegalArgumentException("Supplier name required");
         }
-        Integer supplierPhoneNumber = contentValues.getAsInteger(BookContract.BookEntry.SUPPLIER_PHONE_NUMBER);
-        if (supplierPhoneNumber == null) {
+        String supplierPhoneNumber = contentValues.getAsString(BookContract.BookEntry.SUPPLIER_PHONE_NUMBER);
+        if (TextUtils.isEmpty(supplierPhoneNumber)) {
             throw new IllegalArgumentException("Supplier phone number required");
         }
         //Get a writable database and insert new book with given values
@@ -130,7 +131,7 @@ public class BookProvider extends ContentProvider {
             case BOOKS:
                 rowsDeleted = database.delete(BookContract.BookEntry.TABLE_NAME, selection, selectionArgs);
                 break;
-            case BOOK:
+            case BOOK_ID:
                 selection = BookContract.BookEntry.PRODUCT_ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 rowsDeleted = database.delete(BookContract.BookEntry.TABLE_NAME, selection, selectionArgs);
@@ -151,7 +152,7 @@ public class BookProvider extends ContentProvider {
         switch (match) {
             case BOOKS:
                 return updateBook(uri, contentValues, selection, selectionArgs);
-            case BOOK:
+            case BOOK_ID:
                 selection = BookContract.BookEntry.PRODUCT_ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 return updateBook(uri, contentValues, selection, selectionArgs);
@@ -162,13 +163,13 @@ public class BookProvider extends ContentProvider {
 
     private int updateBook(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
         if (contentValues.containsKey(BookContract.BookEntry.PRODUCT_NAME)) {
-            String name = contentValues.getAsString(BookContract.BookEntry.PRODUCT_NAME);
-            if (name == null) {
+            String bookName = contentValues.getAsString(BookContract.BookEntry.PRODUCT_NAME);
+            if (TextUtils.isEmpty(bookName)) {
                 throw new IllegalArgumentException("Book name required");
             }
         }
         if (contentValues.containsKey(BookContract.BookEntry.PRODUCT_PRICE)) {
-            Integer price = contentValues.getAsInteger(BookContract.BookEntry.PRODUCT_PRICE);
+            Double price = contentValues.getAsDouble(BookContract.BookEntry.PRODUCT_PRICE);
             if (price != null && price < 0) {
                 throw new IllegalArgumentException("Valid book price required");
             }
@@ -181,13 +182,13 @@ public class BookProvider extends ContentProvider {
         }
         if (contentValues.containsKey(BookContract.BookEntry.SUPPLIER_NAME)) {
             String supplier = contentValues.getAsString(BookContract.BookEntry.SUPPLIER_NAME);
-            if (supplier == null) {
+            if (TextUtils.isEmpty(supplier)) {
                 throw new IllegalArgumentException("Supplier name required");
             }
         }
         if (contentValues.containsKey(BookContract.BookEntry.SUPPLIER_PHONE_NUMBER)) {
             String supplierPhoneNumber = contentValues.getAsString(BookContract.BookEntry.SUPPLIER_PHONE_NUMBER);
-            if (supplierPhoneNumber == null) {
+            if (TextUtils.isEmpty(supplierPhoneNumber)) {
                 throw new IllegalArgumentException("Supplier phone number required");
             }
         }

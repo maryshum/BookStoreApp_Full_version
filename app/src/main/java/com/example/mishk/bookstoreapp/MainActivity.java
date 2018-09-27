@@ -2,7 +2,6 @@ package com.example.mishk.bookstoreapp;
 
 import android.app.LoaderManager;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -11,7 +10,6 @@ import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -61,9 +59,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<Cursor> onCreateLoader (int id, Bundle bundle){
         String[] projection = {
+                BookEntry.PRODUCT_ID,
                 BookEntry.PRODUCT_NAME,
                 BookEntry.PRODUCT_PRICE,
                 BookEntry.PRODUCT_QUANTITY};
+
         return new CursorLoader(this,
                 mBookUri,
                 projection,
