@@ -15,13 +15,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.mishk.bookstoreapp.data.BookContract.BookEntry;
-import com.example.mishk.bookstoreapp.data.BookCursorAdapter;
 
 //Reference used for this code: Pets apps from lessons 4 and 5 of Udacity Android Basics Nanodegree Course
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int BOOK_LOADER = 0;
     BookCursorAdapter mBookCursorAdapter;
-    private Uri mBookUri;
+    private Uri mCurrentBookUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +44,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         booksList.setAdapter(mBookCursorAdapter);
         booksList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent openBookDetails = new Intent (MainActivity.this, ProductDetailsActivity.class);
-                Uri currentBookUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
-                openBookDetails.setData(currentBookUri);
-                startActivity(openBookDetails);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, ProductDetailsActivity.class);
+                mCurrentBookUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
+                intent.setData(mCurrentBookUri);
+                startActivity(intent);
             }
         });
         getLoaderManager().initLoader(BOOK_LOADER, null, this);
-        mBookUri = BookEntry.CONTENT_URI;
     }
 
     @Override
@@ -65,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 BookEntry.PRODUCT_QUANTITY};
 
         return new CursorLoader(this,
-                mBookUri,
+                BookEntry.CONTENT_URI,
                 projection,
                 null,
                 null,

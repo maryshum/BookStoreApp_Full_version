@@ -32,4 +32,6 @@
     <string name="delete_book_failed">No books to delete</string>
     <string name="delete_book_successful">Book deleted</string>
     <string name="invalid_input">Quantity can`t be a negative value</string>
+    <string name="none">No books available</string>
+    <string name="quantity_update">Books quantity updated</string>
 </resources>

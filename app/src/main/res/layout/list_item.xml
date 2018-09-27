@@ -42,5 +42,6 @@
         android:layout_marginLeft="@dimen/buttons_margin_side"
         android:layout_marginStart="@dimen/buttons_margin_side"
         android:layout_marginTop="@dimen/sale_button_margin_top"
+        android:focusable="false"
         android:text="@string/sale_button" />
 </LinearLayout>
