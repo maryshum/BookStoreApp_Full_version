@@ -19,8 +19,8 @@ import com.example.mishk.bookstoreapp.data.BookContract.BookEntry;
 //Reference used for this code: Pets apps from lessons 4 and 5 of Udacity Android Basics Nanodegree Course
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int BOOK_LOADER = 0;
-    BookCursorAdapter mBookCursorAdapter;
-    private Uri mCurrentBookUri;
+    private BookCursorAdapter bookCursorAdapter;
+    private Uri currentBookUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +40,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         //Set up EmptyView for the case when there are no books in the list
         View emptyView = findViewById(R.id.empty_view);
         booksList.setEmptyView(emptyView);
-        mBookCursorAdapter = new BookCursorAdapter(this, null);
-        booksList.setAdapter(mBookCursorAdapter);
+        bookCursorAdapter = new BookCursorAdapter(this, null);
+        booksList.setAdapter(bookCursorAdapter);
         booksList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, ProductDetailsActivity.class);
-                mCurrentBookUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
-                intent.setData(mCurrentBookUri);
+                currentBookUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
+                intent.setData(currentBookUri);
                 startActivity(intent);
             }
         });
@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data){
-        mBookCursorAdapter.swapCursor(data);
+        bookCursorAdapter.swapCursor(data);
         }
         @Override
     public void onLoaderReset(Loader<Cursor> loader){
-        mBookCursorAdapter.swapCursor(null);
+            bookCursorAdapter.swapCursor(null);
         }
 }
 

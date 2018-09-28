@@ -34,4 +34,5 @@
     <string name="invalid_input">Quantity can`t be a negative value</string>
     <string name="none">No books available</string>
     <string name="quantity_update">Books quantity updated</string>
+    <string name="all_fields_required">All fields are required to save book</string>
 </resources>

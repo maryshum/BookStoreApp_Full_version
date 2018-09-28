@@ -1,7 +1,6 @@
 package com.example.mishk.bookstoreapp.data;
 
 import android.content.ContentProvider;
-import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
@@ -20,20 +19,20 @@ public class BookProvider extends ContentProvider {
     //Uri matcher code for one book from the table
     private static final int BOOK_ID = 101;
     //Uri matcher object to match a URI to the content
-    private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+    private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     //Static initializer that is used when anything is called for the first time from the BookProvider class
     static {
-        sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_BOOKS, BOOKS);
-        sUriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_BOOKS + "/#", BOOK_ID);
+        uriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_BOOKS, BOOKS);
+        uriMatcher.addURI(BookContract.CONTENT_AUTHORITY, BookContract.PATH_BOOKS + "/#", BOOK_ID);
     }
 
-    private BookDbHelper mBookDbHelper;
+    private BookDbHelper bookDbHelper;
 
     @Override
     //Initializing the BookProvider and the helper object
     public boolean onCreate() {
-        mBookDbHelper = new BookDbHelper(getContext());
+        bookDbHelper = new BookDbHelper(getContext());
         return true;
     }
 
@@ -41,11 +40,11 @@ public class BookProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         //Get readable database
-        SQLiteDatabase database = mBookDbHelper.getReadableDatabase();
+        SQLiteDatabase database = bookDbHelper.getReadableDatabase();
         //Declare cursor that will hold the result of the query
         Cursor cursor;
         //Check if cursor matcher can match URI to the code
-        int match = sUriMatcher.match(uri);
+        int match = uriMatcher.match(uri);
         switch (match) {
             case BOOKS:
                 cursor = database.query(BookContract.BookEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
@@ -65,7 +64,7 @@ public class BookProvider extends ContentProvider {
     //Return MIME type for content URI
     @Override
     public String getType(Uri uri) {
-        final int match = sUriMatcher.match(uri);
+        final int match = uriMatcher.match(uri);
         switch (match) {
             case BOOKS:
                 return BookContract.BookEntry.CONTENT_LIST_TYPE;
@@ -79,7 +78,7 @@ public class BookProvider extends ContentProvider {
     //Insert data into provider
     @Override
     public Uri insert(Uri uri, ContentValues contentValues) {
-        final int match = sUriMatcher.match(uri);
+        final int match = uriMatcher.match(uri);
         switch (match) {
             case BOOKS:
                 return insertBook(uri, contentValues);
@@ -110,7 +109,7 @@ public class BookProvider extends ContentProvider {
             throw new IllegalArgumentException("Supplier phone number required");
         }
         //Get a writable database and insert new book with given values
-        SQLiteDatabase database = mBookDbHelper.getWritableDatabase();
+        SQLiteDatabase database = bookDbHelper.getWritableDatabase();
         long id = database.insert(BookContract.BookEntry.TABLE_NAME, null, contentValues);
         if (id == -1) {
             Log.e(LOG_TAG, "Failed to insert the row for " + uri);
@@ -124,9 +123,9 @@ public class BookProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        SQLiteDatabase database = mBookDbHelper.getWritableDatabase();
+        SQLiteDatabase database = bookDbHelper.getWritableDatabase();
         int rowsDeleted;
-        final int match = sUriMatcher.match(uri);
+        final int match = uriMatcher.match(uri);
         switch (match) {
             case BOOKS:
                 rowsDeleted = database.delete(BookContract.BookEntry.TABLE_NAME, selection, selectionArgs);
@@ -148,7 +147,7 @@ public class BookProvider extends ContentProvider {
     //Update data for selection and selectionArgs with new content values
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
-        final int match = sUriMatcher.match(uri);
+        final int match = uriMatcher.match(uri);
         switch (match) {
             case BOOKS:
                 return updateBook(uri, contentValues, selection, selectionArgs);
@@ -195,7 +194,7 @@ public class BookProvider extends ContentProvider {
         if (contentValues.size() == 0) {
             return 0;
         }
-        SQLiteDatabase database = mBookDbHelper.getWritableDatabase();
+        SQLiteDatabase database = bookDbHelper.getWritableDatabase();
         int rowsUpdated = database.update(BookContract.BookEntry.TABLE_NAME, contentValues, selection, selectionArgs);
         //Notify listeners of the data changes
         if (rowsUpdated != 0) {
